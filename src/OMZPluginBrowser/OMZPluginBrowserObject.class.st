@@ -1,33 +1,58 @@
+"
+## Examples
+
+```smalltalk
+| pluginBrowser |
+
+pluginBrowser := OMZPluginBrowserObject new.
+"" Get a list of the plugin names ""
+pluginBrowser listPluginNames.
+``` 
+"
 Class {
 	#name : 'OMZPluginBrowserObject',
-	#superclass : 'Object',
+	#superclass : 'OMZPluginAbstractObject',
+	#instVars : [
+		'plugins'
+	],
 	#category : 'OMZPluginBrowser',
 	#package : 'OMZPluginBrowser'
 }
 
 { #category : 'accessing' }
+OMZPluginBrowserObject >> addPluginNamed: pluginName [
+
+	self plugins add: (self newPluginNamed: pluginName)
+]
+
+{ #category : 'accessing' }
+OMZPluginBrowserObject >> collectPlugins [
+	"Answer a <Collection> of <OMZPluginObject> representing installed plugins in the host system"
+	
+	plugins := OrderedCollection new: 500.
+	self listPluginNames
+		do: [ : pluginName | self addPluginNamed: pluginName ]
+		displayingProgress: 'Collecting plugins...'.
+	^ plugins
+]
+
+{ #category : 'accessing - operations' }
 OMZPluginBrowserObject >> disablePlugin: aPluginName [
 
-	^ LibC resultOfCommand: (self pluginDisableCommand: aPluginName)
+	^ (self pluginNamed: aPluginName) disable
 ]
 
-{ #category : 'accessing' }
+{ #category : 'accessing - operations' }
 OMZPluginBrowserObject >> enablePlugin: aPluginName [
 
-	^ LibC resultOfCommand: (self pluginEnableCommand: aPluginName)
+	^ (self pluginNamed: aPluginName) enable
 ]
 
 { #category : 'accessing' }
-OMZPluginBrowserObject >> listPlugins [
-	"Answer a <Collection> of <Association> each one the name of an installed plugin"
+OMZPluginBrowserObject >> listPluginNames [
+	"Answer a <Collection> of <String> representing the available plugins in the host system"
 	
-	| collectedPlugins |
-	
-	collectedPlugins := OrderedCollection new: 500.
-	(LibC resultOfCommand: self listPluginsCommand) lines
-			do: [ : entry | collectedPlugins add: entry -> (LibC resultOfCommand: (self pluginInfoCommand: entry)) ]
-			displayingProgress: 'Collecting plugins...'.
-	^ collectedPlugins
+	^ (LibC resultOfCommand: self listPluginsCommand) lines
 ]
 
 { #category : 'accessing - commands' }
@@ -36,42 +61,34 @@ OMZPluginBrowserObject >> listPluginsCommand [
 	^ self newZshCommand: '"omz plugin list"'
 ]
 
-{ #category : 'accessing' }
+{ #category : 'accessing - operations' }
 OMZPluginBrowserObject >> loadPlugin: aPluginName [
+	"Load aPluginName in the host system"
 
-	^ LibC resultOfCommand: (self pluginLoadCommand: aPluginName)
+	^ (self pluginNamed: aPluginName) load
 ]
 
-{ #category : 'private' }
-OMZPluginBrowserObject >> newZshCommand: aZshCommandString [
-	" Answer a <String> which is the command to execute in the context of a new Z Shell"
+{ #category : 'accessing' }
+OMZPluginBrowserObject >> newPluginNamed: pluginName [
 
-	^ String streamContents: [ : stream |
-		stream
-			<< 'zsh -ic';
-			<< aZshCommandString ]
+	^ OMZPluginObject named: pluginName
 ]
 
-{ #category : 'accessing - commands' }
-OMZPluginBrowserObject >> pluginDisableCommand: aPluginName [
+{ #category : 'accessing' }
+OMZPluginBrowserObject >> pluginNamed: aPluginName [
 
-	^ self newZshCommand: '"omz plugin disable "' , aPluginName
+	^ self plugins at: aPluginName
 ]
 
-{ #category : 'accessing - commands' }
-OMZPluginBrowserObject >> pluginEnableCommand: aPluginName [
+{ #category : 'accessing' }
+OMZPluginBrowserObject >> plugins [
 
-	^ self newZshCommand: '"omz plugin enable "' , aPluginName
+	^ plugins
+		ifNil: [ self collectPlugins ]
 ]
 
-{ #category : 'accessing - commands' }
-OMZPluginBrowserObject >> pluginInfoCommand: aPluginName [
+{ #category : 'accessing' }
+OMZPluginBrowserObject >> plugins: anObject [
 
-	^ self newZshCommand: '"omz plugin info "' , aPluginName
-]
-
-{ #category : 'accessing - commands' }
-OMZPluginBrowserObject >> pluginLoadCommand: aPluginName [
-
-	^ self newZshCommand: '"omz plugin load "' , aPluginName
+	plugins := anObject
 ]
