@@ -1,8 +1,9 @@
 Class {
 	#name : 'OMZPluginAbstractObject',
 	#superclass : 'Object',
-	#category : 'OMZPluginBrowser',
-	#package : 'OMZPluginBrowser'
+	#category : 'OMZPluginBrowser-Core',
+	#package : 'OMZPluginBrowser',
+	#tag : 'Core'
 }
 
 { #category : 'private' }
