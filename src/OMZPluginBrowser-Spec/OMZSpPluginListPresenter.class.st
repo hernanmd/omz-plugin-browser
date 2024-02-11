@@ -29,7 +29,8 @@ OMZSpPluginListPresenter >> initializePresenters [
 
 	omzPluginListPresenter := self newTable
 		addColumn: (SpStringTableColumn new
-			title: 'Title';
+			title: 'Name';
+			width: 100;			
 			sortFunction: #yourself ascending;			
 			evaluated: [ : each | (each isKindOf: OMZPluginObject) 
 					ifTrue: [ each pluginName ]

@@ -50,6 +50,12 @@ OMZPluginWrapper >> enablePlugin: aPluginName [
 	^ (self pluginNamed: aPluginName) enable
 ]
 
+{ #category : 'accessing - commands' }
+OMZPluginWrapper >> isEnabled: aPluginName [
+
+	^ self listEnabledPlugins includes: aPluginName
+]
+
 { #category : 'accessing' }
 OMZPluginWrapper >> listEnabledPlugins [
 
@@ -60,7 +66,8 @@ OMZPluginWrapper >> listEnabledPlugins [
 { #category : 'accessing - commands' }
 OMZPluginWrapper >> listEnabledPluginsCommand [
 
-	^ self newZshCommand: '"echo $plugins"'
+	^ 'zsh -c "echo $plugins"'
+
 ]
 
 { #category : 'accessing - commands' }
