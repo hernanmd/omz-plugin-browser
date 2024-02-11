@@ -30,11 +30,9 @@ OMZSpPluginListPresenter >> initializePresenters [
 	omzPluginListPresenter := self newTable
 		addColumn: (SpStringTableColumn new
 			title: 'Name';
-			width: 100;			
+			width: 300;			
 			sortFunction: #yourself ascending;			
-			evaluated: [ : each | (each isKindOf: OMZPluginObject) 
-					ifTrue: [ each pluginName ]
-					ifFalse: [ 'self halt' ] ];
+			evaluated: [ : each | each pluginName ];
 			yourself);
 		addColumn: (SpCheckBoxTableColumn new
 			width: 20;

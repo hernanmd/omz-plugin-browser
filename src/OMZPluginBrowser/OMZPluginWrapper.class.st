@@ -60,13 +60,13 @@ OMZPluginWrapper >> isEnabled: aPluginName [
 OMZPluginWrapper >> listEnabledPlugins [
 
 	^ enabledPlugins 
-		ifNil: [ enabledPlugins := LibC resultOfCommand: self listEnabledPluginsCommand ]
+		ifNil: [ enabledPlugins := self parseEnabledPlugins ]
 ]
 
 { #category : 'accessing - commands' }
 OMZPluginWrapper >> listEnabledPluginsCommand [
 
-	^ 'zsh -c "echo $plugins"'
+	^ self newZshCommand: '"set | grep ^plugins"'
 
 ]
 
@@ -89,6 +89,16 @@ OMZPluginWrapper >> newPluginNamed: pluginName [
 	^ OMZPluginObject 
 		named: pluginName
 		enabled: (self isEnabled: pluginName).
+]
+
+{ #category : 'parsing' }
+OMZPluginWrapper >> parseEnabledPlugins [
+
+	| rawPluginListOutput |
+	rawPluginListOutput := LibC resultOfCommand: self listEnabledPluginsCommand.
+	^ (rawPluginListOutput findTokens: ' ') 
+		ifNotEmpty: [ : pluginsCollection | pluginsCollection allButFirst allButLast ]
+		ifEmpty: [ Array empty ]
 ]
 
 { #category : 'accessing' }

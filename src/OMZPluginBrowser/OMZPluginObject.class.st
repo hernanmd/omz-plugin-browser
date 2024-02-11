@@ -30,6 +30,17 @@ OMZPluginObject class >> named: aString enabled: aBoolean [
 		yourself.
 ]
 
+{ #category : 'comparing' }
+OMZPluginObject >> = anOMZPluginObject [
+	"Answer <true> if receiver is the same as anOMZPluginObject"
+	
+	self == anOMZPluginObject
+		ifTrue: [ ^ true ].
+	self class = anOMZPluginObject class
+		ifFalse: [ ^ false ].
+	^ self pluginName = anOMZPluginObject pluginName
+]
+
 { #category : 'accessing' }
 OMZPluginObject >> disable [
 	"Disable the receiver in the host system"
@@ -70,6 +81,12 @@ OMZPluginObject >> getInfo [
 	
 	^ LibC resultOfCommand: self infoCommand.
 	
+]
+
+{ #category : 'comparing' }
+OMZPluginObject >> hash [
+	
+	^ self pluginName hash
 ]
 
 { #category : 'accessing - commands' }
