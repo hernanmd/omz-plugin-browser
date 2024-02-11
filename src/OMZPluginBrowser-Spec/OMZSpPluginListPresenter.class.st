@@ -35,6 +35,11 @@ OMZSpPluginListPresenter >> initializePresenters [
 					ifTrue: [ each pluginName ]
 					ifFalse: [ 'self halt' ] ];
 			yourself);
+		addColumn: (SpCheckBoxTableColumn new
+			width: 20;
+			title: 'Enabled';
+			evaluated: [ : each | each isEnabled ];
+			yourself);
 		items: model;
 		contextMenu: [ (self rootCommandsGroup / 'OMZSelContextualMenu') beRoot asMenuPresenter ];	
 		yourself

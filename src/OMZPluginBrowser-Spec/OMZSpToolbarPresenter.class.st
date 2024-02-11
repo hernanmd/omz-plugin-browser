@@ -38,7 +38,7 @@ OMZSpToolbarPresenter >> initializePresenters [
 		yourself.
 	omzSearchPluginButtonPresenter := self newButton
 		icon: (self iconNamed: #smallFind);
-		action: [ self searchList: omzSearchPluginTextPresenter text ];		
+		action: [ self updatePluginsList ];		
 		help: 'Search plugins';
 		yourself
 ]

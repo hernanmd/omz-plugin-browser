@@ -13,7 +13,8 @@ Class {
 	#name : 'OMZPluginWrapper',
 	#superclass : 'OMZPluginAbstractObject',
 	#instVars : [
-		'plugins'
+		'plugins',
+		'enabledPlugins'
 	],
 	#category : 'OMZPluginBrowser-Core',
 	#package : 'OMZPluginBrowser',
@@ -49,8 +50,21 @@ OMZPluginWrapper >> enablePlugin: aPluginName [
 	^ (self pluginNamed: aPluginName) enable
 ]
 
+{ #category : 'accessing' }
+OMZPluginWrapper >> listEnabledPlugins [
+
+	^ enabledPlugins 
+		ifNil: [ enabledPlugins := LibC resultOfCommand: self listEnabledPluginsCommand ]
+]
+
 { #category : 'accessing - commands' }
-OMZPluginWrapper >> listPluginsCommand [
+OMZPluginWrapper >> listEnabledPluginsCommand [
+
+	^ self newZshCommand: '"echo $plugins"'
+]
+
+{ #category : 'accessing - commands' }
+OMZPluginWrapper >> listInstalledPluginsCommand [
 
 	^ self newZshCommand: '"omz plugin list"'
 ]
@@ -65,7 +79,9 @@ OMZPluginWrapper >> loadPlugin: aPluginName [
 { #category : 'accessing' }
 OMZPluginWrapper >> newPluginNamed: pluginName [
 
-	^ OMZPluginObject named: pluginName
+	^ OMZPluginObject 
+		named: pluginName
+		enabled: (self isEnabled: pluginName).
 ]
 
 { #category : 'accessing' }
@@ -78,7 +94,7 @@ OMZPluginWrapper >> pluginNamed: aPluginName [
 OMZPluginWrapper >> pluginNames [
 	"Answer a <Collection> of <String> representing the available plugins in the host system"
 	
-	^ (LibC resultOfCommand: self listPluginsCommand) lines
+	^ (LibC resultOfCommand: self listInstalledPluginsCommand) lines
 ]
 
 { #category : 'accessing' }

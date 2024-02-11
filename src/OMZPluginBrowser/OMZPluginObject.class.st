@@ -3,7 +3,8 @@ Class {
 	#superclass : 'OMZPluginAbstractObject',
 	#instVars : [
 		'pluginName',
-		'pluginInfo'
+		'pluginInfo',
+		'enabled'
 	],
 	#category : 'OMZPluginBrowser-Core',
 	#package : 'OMZPluginBrowser',
@@ -16,6 +17,16 @@ OMZPluginObject class >> named: aString [
 	
 	^ self new
 		pluginName: aString;
+		yourself.
+]
+
+{ #category : 'instance creation' }
+OMZPluginObject class >> named: aString enabled: aBoolean [
+	"Answer a new instance of the receiver named aString"
+	
+	^ self new
+		pluginName: aString;
+		enabled: aBoolean;
 		yourself.
 ]
 
@@ -48,6 +59,12 @@ OMZPluginObject >> enableCommand [
 ]
 
 { #category : 'accessing' }
+OMZPluginObject >> enabled: anObject [
+
+	enabled := anObject
+]
+
+{ #category : 'accessing' }
 OMZPluginObject >> getInfo [
 	"Get information of the receiver in the host system"
 	
@@ -60,6 +77,13 @@ OMZPluginObject >> infoCommand [
 	"Answer a <String> with the command used to get infrormation of the receiver"
 	
 	^ self newZshCommand: '"omz plugin info '
+]
+
+{ #category : 'testing' }
+OMZPluginObject >> isEnabled [
+	"Answer <true> if receiver is enabled in the host system"
+	
+	^ enabled
 ]
 
 { #category : 'accessing' }
