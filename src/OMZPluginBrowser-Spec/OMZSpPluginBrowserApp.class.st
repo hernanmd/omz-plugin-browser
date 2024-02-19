@@ -1,3 +1,6 @@
+"
+The Spec application for the Oh-My-Zsh plugin browser.
+"
 Class {
 	#name : 'OMZSpPluginBrowserApp',
 	#superclass : 'SpApplication',

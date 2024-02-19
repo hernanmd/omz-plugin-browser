@@ -1,3 +1,10 @@
+"
+An Oh-My-Zsh plugin is a modular extension for the Oh-My-Zsh framework, enhancing its functionality with custom commands, aliases, themes, and additional features to personalize and streamline the Zsh shell experience.
+
+A plugin in Oh-My-Zsh can implement actions such as initialization, command interception, environment setup, configuration parsing, and shell event handling.
+
+A plugin object can be enabled or disabled, and it can provide textual information about it.
+"
 Class {
 	#name : 'OMZPluginObject',
 	#superclass : 'OMZPluginAbstractObject',

@@ -111,8 +111,8 @@ OMZSpPluginBrowserMain >> omzPluginListPresenter [
 { #category : 'showing' }
 OMZSpPluginBrowserMain >> open [ 
 
-	super open;
-		centered
+	super open.
+	self centered
 ]
 
 { #category : 'initialization' }
