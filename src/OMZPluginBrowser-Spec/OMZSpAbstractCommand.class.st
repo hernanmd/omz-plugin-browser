@@ -1,3 +1,8 @@
+"
+Just an abstract class to provide subclasses commonly used methods such as access to the Application and the currently selected plugin.
+
+See subclasses for details.
+"
 Class {
 	#name : 'OMZSpAbstractCommand',
 	#superclass : 'CmCommand',
@@ -12,7 +17,7 @@ OMZSpAbstractCommand >> application [
 	^ self context application
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'accessing' }
 OMZSpAbstractCommand >> selectedPlugin [
 	"Answer the receiver's <OMZPluginObject> selected plugin"
 

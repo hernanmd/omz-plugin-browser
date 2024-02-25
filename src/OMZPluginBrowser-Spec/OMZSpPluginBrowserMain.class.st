@@ -21,6 +21,8 @@ OMZSpPluginBrowserMain >> connectPresenters [
 			omzPlugin
 				ifNil: [ String empty ]
 				ifNotNil: [ omzPlugin pluginInfo ] ]
+		postTransmission: [ : destination :origin :transmited |
+			omzPluginDescriptionPresenter contents: transmited pluginInfo ]
 ]
 
 { #category : 'layout' }
@@ -51,9 +53,9 @@ OMZSpPluginBrowserMain >> initialTitle [
 ]
 
 { #category : 'initialization' }
-OMZSpPluginBrowserMain >> initializePluginsInfo [
+OMZSpPluginBrowserMain >> initializePluginDescriptionPresenter [
 
-	omzPluginDescriptionPresenter := self newText.
+	omzPluginDescriptionPresenter := self instantiate: OMZSpPluginDescriptionPresenter.
 ]
 
 { #category : 'initialization' }
@@ -75,7 +77,7 @@ OMZSpPluginBrowserMain >> initializePresenters [
 	self 
 		initializePluginsToolbar;
 		initializePluginsList;
-		initializePluginsInfo;
+		initializePluginDescriptionPresenter;
 		initializeStatusbar
 ]
 
@@ -92,7 +94,9 @@ OMZSpPluginBrowserMain >> initializeWindow: aSpWindowPresenter [
 
 	self setTitleTo: aSpWindowPresenter.
 	self setWindowIconTo: aSpWindowPresenter.
-	self setInitialExtentTo: aSpWindowPresenter
+	self setInitialExtentTo: aSpWindowPresenter.
+
+	aSpWindowPresenter aboutText: 'Oh-My-Zsh plugin browser, version 1.0'
 ]
 
 { #category : 'accessing' }
