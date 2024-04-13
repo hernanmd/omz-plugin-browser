@@ -8,6 +8,7 @@
   - [Features](#features)
 - [Installation](#installation)
   - [Baseline String](#baseline-string)
+- [Screenshots](#screenshots)
 - [Usage](#usage)
 - [Implementation notes](#implementation-note)
 - [Contribute](#contribute)
@@ -16,9 +17,9 @@
 
 # Description
 
-Oh My Zsh is a framework for managing a Zsh configuration, it comes bundled with thousands of helpful functions, helpers, plugins, themes. Zsh, short for Z shell, serves as a versatile Unix shell suitable for interactive login sessions and shell scripting tasks. It stands out as an extended Bourne shell boasting numerous enhancements, borrowing features from Bash, ksh, and tcsh. Zsh introduces advanced functionalities like programmable command-line completion, expanded file globbing, refined variable/array handling, and customizable prompts. It is also cross-platform, including support for Microsoft Windows through the UnxUtils collection. It has earned recognition as the default shell for macOS and Kali Linux.
+[Oh My Zsh](https://ohmyz.sh/) is a framework for managing a [Zsh](https://en.wikipedia.org/wiki/Z_shell) configuration, it comes bundled with thousands of helpful functions, helpers, plugins, themes. Zsh, short for Z shell, serves as a versatile Unix shell suitable for interactive login sessions and shell scripting tasks. It stands out as an extended Bourne shell boasting numerous enhancements, borrowing features from Bash, ksh, and tcsh. Zsh introduces advanced functionalities like programmable command-line completion, expanded file globbing, refined variable/array handling, and customizable prompts. It is also cross-platform, including support for Microsoft Windows through the [UnxUtils](https://en.wikipedia.org/wiki/UnxUtils) collection. It has earned recognition as the default shell for macOS and Kali Linux.
 
-The Oh-My-Zsh Plugin Manager is a user-friendly graphical tool designed to simplify the management of Oh-My-Zsh plugins. It offers a convenient interface to list, enable, and disable plugins with ease. There is a [massive collection of plugins](https://github.com/unixorn/awesome-zsh-plugins) available to try in your own system. With the Oh-My-Zsh Plugin Manager, managing your Zsh plugins becomes effortless, allowing you to tailor your shell environment to your specific needs.
+This Oh-My-Zsh Plugin Manager is a user-friendly graphical tool designed to simplify the management of [Oh-My-Zsh plugins](https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins). It offers a convenient interface to list, enable, and disable plugins with ease. There is a [massive collection of awesome plugins](https://github.com/unixorn/awesome-zsh-plugins) available to try in your own system. With the Oh-My-Zsh Plugin Manager, managing your Zsh plugins becomes effortless, allowing you to tailor your shell environment to your specific needs.
 
 ## Features
 
@@ -45,6 +46,14 @@ If you want to add the OMZPluginBrowser to your Metacello Baselines or Configura
 		with: [ spec repository: 'github://hernanmd/omz-plugin-browser/src' ];
 	" ... "
 ```
+
+# Screenshots
+
+![OMZ Plugin Browser 1](https://github.com/hernanmd/omz-plugin-browser/assets/4825959/a8d33a53-0d4d-459a-99ba-f514772e19bf)
+
+![OMZ Plugin Browser_2](https://github.com/hernanmd/omz-plugin-browser/assets/4825959/598b21b5-c878-401d-a0b1-5d6983d5f803)
+
+<img width="727" alt="OMZ Plugin Browser_3" src="https://github.com/hernanmd/omz-plugin-browser/assets/4825959/c0f72c68-f381-4f50-931a-2d6bf85db44d">
 
 # Usage
 
