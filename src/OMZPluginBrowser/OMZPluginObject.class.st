@@ -104,6 +104,13 @@ OMZPluginObject >> infoCommand [
 ]
 
 { #category : 'testing' }
+OMZPluginObject >> isDisabled [
+	"Answer <true> if receiver is disabled in the host system"
+	
+	^ self isEnabled not
+]
+
+{ #category : 'testing' }
 OMZPluginObject >> isEnabled [
 	"Answer <true> if receiver is enabled in the host system"
 	

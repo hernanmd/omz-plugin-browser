@@ -27,6 +27,12 @@ OMZSpEnableCommand class >> defaultName [
 	^ 'Enable'
 ]
 
+{ #category : 'testing' }
+OMZSpEnableCommand >> canBeExecuted [ 
+
+	^ self selectedPlugin isDisabled
+]
+
 { #category : 'executing' }
 OMZSpEnableCommand >> execute [
 	"Request a title to create a new note"

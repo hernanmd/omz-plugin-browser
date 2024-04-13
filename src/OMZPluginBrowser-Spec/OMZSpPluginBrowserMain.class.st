@@ -1,3 +1,9 @@
+"
+The main presenter window for the OMZ plugin browser.
+
+It contains a search toolbar, a plugins list, a description presenter for the selected plugin, and a status bar.
+
+"
 Class {
 	#name : 'OMZSpPluginBrowserMain',
 	#superclass : 'SpPresenter',
@@ -22,7 +28,7 @@ OMZSpPluginBrowserMain >> connectPresenters [
 				ifNil: [ String empty ]
 				ifNotNil: [ omzPlugin pluginInfo ] ]
 		postTransmission: [ : destination :origin :transmited |
-			omzPluginDescriptionPresenter contents: transmited pluginInfo ]
+			transmited ifNotNil: [ omzPluginDescriptionPresenter contents: transmited pluginInfo ] ]
 ]
 
 { #category : 'layout' }

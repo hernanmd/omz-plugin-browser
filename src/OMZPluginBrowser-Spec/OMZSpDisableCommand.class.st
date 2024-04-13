@@ -27,6 +27,12 @@ OMZSpDisableCommand class >> defaultName [
 	^ 'Disable'
 ]
 
+{ #category : 'testing' }
+OMZSpDisableCommand >> canBeExecuted [ 
+
+	^ self selectedPlugin isEnabled
+]
+
 { #category : 'executing' }
 OMZSpDisableCommand >> execute [
 	"Request a title to create a new note"

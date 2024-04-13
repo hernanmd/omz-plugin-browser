@@ -1,3 +1,9 @@
+"
+This presenter provides a table with two columns to be populated by the available plugins in the host system.
+
+The first column contains the plugin name, and the second column its enabled/disabled status.
+
+"
 Class {
 	#name : 'OMZSpPluginListPresenter',
 	#superclass : 'SpPresenter',

@@ -1,3 +1,6 @@
+"
+The OMZ Plugin toolbar offers a search bar to filter the list of presented plugins. It acts on each keypress updating the list contents. The current search strategy is to match the beggining of the plugin name.
+"
 Class {
 	#name : 'OMZSpToolbarPresenter',
 	#superclass : 'SpPresenter',
